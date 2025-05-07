@@ -1,0 +1,1 @@
+from SPLS.main import SPLeastSquares
