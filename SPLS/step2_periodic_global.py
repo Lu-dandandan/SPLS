@@ -58,7 +58,7 @@ def fold_map_no_d_constraint(P, d_sam, tm_sam, dlnL, tm_gap, OS_tm, min_num_tran
     This function has no further restriction on the sampled durations based on the period P
     """
 
-    row = int(P // tm_gap) 
+    row = round(P / tm_gap)
 
     # Enlarge the resolution of tm0
     tm_gap_new = d_sam[0] / OS_tm
@@ -139,7 +139,7 @@ def fold_map_d_constraint(P, d_sam, tm_sam, dlnL, tm_gap, OS_tm, min_num_transit
     d_sam2, idx_dd = d_grid(P, d_sam) 
     dlnL2 = dlnL[idx_dd, :]  # Select the corresponding log-likelihood values for the new sampled durations
     # Number of tm0 
-    row = int(P // tm_gap) 
+    row = round(P / tm_gap)
 
     # Enlarge the resolution of tm0
     tm_gap_new = d_sam2[0] / OS_tm

@@ -41,18 +41,22 @@ class Result_LinearSearch:
         """
         d_sam_hour = self.d_sam * 24
         fig, ax = plt.subplots(figsize=(10, 3.5))
-        im = ax.contourf(self.dlnL, cmap=plt.cm.Oranges, levels=25)
-        ax.set_xticks(np.linspace(0, len(self.tm_sam) - 1, 10), ['%.0f'%i for i in np.linspace(self.tm_sam[0], self.tm_sam[-1], 10)])
-        range1 = np.linspace(0, len(d_sam_hour) - 1, 9)[[0, 4, 6, 7, 8]]
-        range2 = np.logspace(np.log10(d_sam_hour[0]), np.log10(d_sam_hour[-1]), 9)[[0, 4, 6, 7, 8]]
-        ax.set_yticks([i for i in range1], ['%.3f'%i for i in range2])
+        X,Y = np.meshgrid(self.tm_sam,d_sam_hour)
+        im = ax.contourf(X, Y, self.dlnL, cmap=plt.cm.Oranges, shading='auto', levels=25)
+        #ax.set_xticks(np.linspace(0, len(self.tm_sam) - 1, 10), ['%.0f'%i for i in np.linspace(self.tm_sam[0], self.tm_sam[-1], 10)])
+        #range1 = np.linspace(0, len(d_sam_hour) - 1, 9)[[0, 4, 6, 7, 8]]
+        #range2 = np.logspace(np.log10(d_sam_hour[0]), np.log10(d_sam_hour[-1]), 9)[[0, 4, 6, 7, 8]]
+        #ax.set_yticks([i for i in range1], ['%.3f'%i for i in range2])
         ax.set_xlabel(r'$t_m$ [day]', fontsize=12)
         ax.set_ylabel(r'$d$ [hour]', fontsize=12)
         ax.tick_params(axis='x', direction='in') 
-        ax.tick_params(axis='y', direction='in')  
+        ax.tick_params(axis='y', direction='in') 
+        ax.set_yscale('log') 
         cbar = fig.colorbar(im)
         cbar.set_label(r'$\Delta \ln \mathcal{L}$')
         plt.show()
+
+
     def plot1d(self):
         """
         Plots a 1D line plot of the log-likelihood difference values (`dlnL`) as a function of 

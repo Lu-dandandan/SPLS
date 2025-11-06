@@ -94,7 +94,7 @@ def P_grid(Rs, Ms, S, OS_P, Pmin, Pmax):
     Rs *= Rsun  
     S = S * d_to_s
 
-    fre_min = 2.0 / S
+    fre_min = 1.0 / S
     fre_max = (G * Ms / (3 * Rs) ** 3) ** 0.5 / 2.0 / pi
 
     # Cubic sampling of frequency
