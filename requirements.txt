@@ -1,0 +1,14 @@
+# Core dependencies required by SPLS and its result/plotting objects.
+matplotlib
+numba
+numpy
+pandas
+tqdm
+
+# Additional dependencies required to run all bundled example notebooks.
+# Astropy supports the synthetic-transit generator in Example 2.
+astropy
+# Lightkurve downloads and preprocesses Kepler data in Example 1.
+lightkurve
+# JupyterLab provides the notebook runtime used by the examples.
+jupyterlab

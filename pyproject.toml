@@ -1,0 +1,68 @@
+[build-system]
+# Setuptools builds the source distribution and wheel. Requiring a modern
+# release ensures support for standardized project and license metadata.
+requires = ["setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+# The distribution name is used by pip. The import package remains `SPLS`.
+name = "SPLS"
+version = "1.0.1"
+description = "Segmented-Polynomial-fitting Least Squares for exoplanet transit searches"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+
+authors = [
+    { name = "Shuyue Zheng" },
+]
+
+keywords = [
+    "astronomy",
+    "exoplanets",
+    "light curves",
+    "period search",
+    "transit detection",
+]
+
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Astronomy",
+]
+
+# These packages are required to import and run the core SPLS search and its
+# result/plotting objects.
+dependencies = [
+    "matplotlib",
+    "numba",
+    "numpy",
+    "pandas",
+    "tqdm",
+]
+
+[project.optional-dependencies]
+# Install with `python -m pip install ".[examples]"` to run every bundled
+# notebook, including Kepler downloads and synthetic-transit generation.
+examples = [
+    "astropy",
+    "jupyterlab",
+    "lightkurve",
+]
+
+[project.urls]
+Paper = "https://doi.org/10.3847/1538-3881/ae2679"
+Repository = "https://github.com/Lu-dandandan/SPLS"
+Zenodo = "https://doi.org/10.5281/zenodo.15411397"
+
+[tool.setuptools]
+# The repository uses a flat layout. Listing the package explicitly prevents
+# notebooks, example data, archives, and other root files from entering wheels.
+packages = ["SPLS"]
+
+[tool.setuptools.package-data]
+# These files are opened at runtime relative to `SPLS.__file__`; including them
+# is necessary for installed plotting and synthetic-transit functionality.
+SPLS = ["LD_coeff.tsv", "NASA_Pd.csv"]
